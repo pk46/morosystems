@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cz.morosystems</groupId>
+        <groupId>cz.kupcik</groupId>
         <artifactId>morosystems</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -18,14 +18,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>cz.morosystems</groupId>
+            <groupId>cz.kupcik</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cz.morosystems</groupId>
-            <artifactId>core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
