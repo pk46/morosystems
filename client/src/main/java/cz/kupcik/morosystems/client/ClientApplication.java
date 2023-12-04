@@ -26,7 +26,7 @@ public class ClientApplication {
 			final String message = createMessage();
 			log.error(message);
 			session.getBasicRemote().sendText(message);
-			// session.close();
+			 session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
