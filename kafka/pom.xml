@@ -23,6 +23,11 @@
             <artifactId>kafka-clients</artifactId>
             <version>7.0.1-ccs</version>
         </dependency>
+        <dependency>
+            <groupId>cz.kupcik</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>

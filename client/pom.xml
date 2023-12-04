@@ -21,7 +21,11 @@
             <groupId>cz.kupcik</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cz.kupcik</groupId>
+            <artifactId>kafka</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
