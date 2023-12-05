@@ -7,13 +7,21 @@ import jakarta.websocket.DeploymentException;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.IOException;
 import java.net.URI;
 
-
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@EnableScheduling
 @Slf4j
 public class ClientApplication {
+
+    private static Session session;
 
     private static String createMessage() throws IOException {
         return Serializer.serialize(SystemInfoGenerator.generate());
@@ -27,19 +35,26 @@ public class ClientApplication {
     private static void webSocketCommunication() throws DeploymentException, IOException {
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         String uri = "ws://localhost:8080/websocket";
-        Session session = container.connectToServer(WebSocketClient.class, URI.create(uri));
-        final String message = createMessage();
-        session.getBasicRemote().sendText(message);
-        session.close();
+        session = container.connectToServer(WebSocketClient.class, URI.create(uri));
+    }
+
+    @Scheduled(fixedRate = 5000)
+    private static void sendMessage() {
+        try {
+            final String message = createMessage();
+            session.getBasicRemote().sendText(message);
+        } catch (Exception e) {
+            log.error("Odesílání dat z klienta selhalo.", e);
+        }
     }
 
     public static void main(String[] args) {
-
+        SpringApplication.run(ClientApplication.class, args);
         try {
 //            kafkaCommunication();
 			webSocketCommunication();
         } catch (Exception e) {
-            log.error("Odesílání dat z klienta selhalo.", e);
+            log.error("Spojení se serverem se nepodařilo navázat.");
         }
     }
 }

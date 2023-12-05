@@ -2,10 +2,9 @@ package cz.kupcik.morosystems.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling // uncomment this when Kafka communication is enabled
 public class BackendApplication {
 
 	public static void main(String[] args) {
