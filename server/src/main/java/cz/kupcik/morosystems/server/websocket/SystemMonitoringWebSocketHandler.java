@@ -11,6 +11,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 @Component
 @Slf4j
@@ -24,7 +25,6 @@ public class SystemMonitoringWebSocketHandler extends TextWebSocketHandler {
         String receivedPayload = message.getPayload();
         try {
             MessageDto messageDto = (MessageDto) Serializer.deserialize(receivedPayload);
-//            Object des = Serializer.deserialize(receivedPayload);
             service.saveMessage(service.transformtDtoIntoMessage(messageDto));
             session.sendMessage(new TextMessage("200 OK"));
         } catch (ClassNotFoundException | IOException e) {
