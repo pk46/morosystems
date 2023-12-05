@@ -5,8 +5,10 @@ import cz.kupcik.morosystems.server.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MessageController {
@@ -15,8 +17,9 @@ public class MessageController {
     MessageRepository repository;
 
     @GetMapping(value="/messages")
-    public List<Message> getInfo() {
-
-        return repository.findAll();
+    public ModelAndView getInfo(Map<String, Object> model) {
+        List<Message> messages = repository.findAll();
+        model.put("dataList", messages);
+        return new ModelAndView("messages", model);
     }
 }
