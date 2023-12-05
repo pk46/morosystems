@@ -10,17 +10,17 @@ public class WebSocketClient {
 
     @OnOpen
     public void onOpen() {
-        log.error("Spojeni navazano");
+        log.info("Spojeni navazano");
     }
 
     @OnMessage
     public void onMessage(String message) {
-        log.error("Prijato ze serveru: " + message);
+        log.info("Prijato ze serveru: " + message);
     }
 
     @OnClose
     public void onClose() {
-        log.error("Spojeni ukonceno");
+        log.info("Spojeni ukonceno");
     }
 
 }
