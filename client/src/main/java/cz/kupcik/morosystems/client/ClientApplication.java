@@ -36,8 +36,8 @@ public class ClientApplication {
     public static void main(String[] args) {
 
         try {
-            kafkaCommunication();
-//			webSocketCommunication();
+//            kafkaCommunication();
+			webSocketCommunication();
         } catch (Exception e) {
             log.error("Odesílání dat z klienta selhalo.", e);
         }
