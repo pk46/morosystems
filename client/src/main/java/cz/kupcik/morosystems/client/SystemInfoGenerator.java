@@ -25,7 +25,7 @@ public class SystemInfoGenerator {
         DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.getDefault());
         otherSymbols.setDecimalSeparator('.');
         DecimalFormat df = new DecimalFormat("#.##", otherSymbols); // round to two decimals
-        return String.valueOf(df.format(osBean.getProcessCpuLoad() * 100)); // * 100 to get result in percentage
+        return String.valueOf(df.format(osBean.getCpuLoad() * 100)); // * 100 to get result in percentage
     }
 
     private static String retrieveIpAddress() {
